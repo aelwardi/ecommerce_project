@@ -18,7 +18,7 @@ final class RegisterController extends AbstractController
         $user = new User();
         $from = $this->createForm(RegisterUserType::class, $user);
         $from->handleRequest($request);
-        
+
         if ($from->isSubmitted() && $from->isValid()) {
             //dd($from->getData());
             $entityManager->persist($user);
