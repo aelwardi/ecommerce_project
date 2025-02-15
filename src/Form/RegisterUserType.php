@@ -51,7 +51,7 @@ class RegisterUserType extends AbstractType
                 'label' => 'Votre prénom',
                 'constraints' => [
                     new Length([
-                        'min' => 8,
+                        'min' => 2,
                         'max' => 40,
                     ])
                 ],
@@ -63,7 +63,7 @@ class RegisterUserType extends AbstractType
                 'label' => 'Votre nom',
                 'constraints' => [
                     new Length([
-                        'min' => 8,
+                        'min' => 2,
                         'max' => 40,
                     ])
                 ],
