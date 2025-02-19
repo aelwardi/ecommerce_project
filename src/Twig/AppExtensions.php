@@ -1,16 +1,18 @@
 <?php
 namespace App\Twig;
 
+use App\Classe\Card;
 use App\Repository\CategoryRepository;
 use Twig\Extension\AbstractExtension;
 use Twig\Extension\GlobalsInterface;
 
 class AppExtensions extends AbstractExtension implements GlobalsInterface
 {
-    private $categoryRepository;
-    public function __construct(CategoryRepository $categoryRepository)
+    private $categoryRepository, $card;
+    public function __construct(CategoryRepository $categoryRepository, Card $card)
     {
         $this->categoryRepository = $categoryRepository;
+        $this->card = $card;
     }
     public function getFilters()
     {
@@ -28,6 +30,7 @@ class AppExtensions extends AbstractExtension implements GlobalsInterface
     {
         return [
             'allCategories' => $this->categoryRepository->findAll(),
+            'fullCardQuantity' => $this->card->fullQuantity(),
         ];
     }
 }
