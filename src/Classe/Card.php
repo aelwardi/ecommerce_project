@@ -12,7 +12,7 @@ class Card
     public function add($product)
     {
         #$session = $this->requestStack->getSession();
-        $card = $this->requestStack->getSession()->get('card');
+        $card = $this->getCard();
         #dd($session);
         if(isset($card[$product->getId()])){
             $card[$product->getId()] = [
@@ -30,7 +30,7 @@ class Card
     }
 
     public function decrease($id){
-        $card = $this->requestStack->getSession()->get('card');
+        $card =$this->getCard();
 
         if($card[$id]['qty'] > 1) {
             $card[$id]['qty']--;
@@ -45,7 +45,7 @@ class Card
     }
 
     public function fullQuantity() {
-        $card = $this->requestStack->getSession()->get('card');
+        $card = $this->getCard();
         $quantity = 0;
         if(!isset($card)){
             return $quantity;
@@ -57,7 +57,7 @@ class Card
     }
 
     public function getTotalWT() {
-        $card = $this->requestStack->getSession()->get('card');
+        $card = $this->getCard();
         $price = 0;
         foreach ($card as $product) {
             $price += ($product['object']->getPriceWT() * $product['qty']);
